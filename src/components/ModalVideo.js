@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import { Modal } from "antd";
 import ReactPlayer from "react-player";
-import { useFetchVideo } from "../hooks/useFetchVideo";
+//import { useFetchVideo } from "../hooks/useFetchVideo";
 
 import "./ModalVideo.scss";
 import { getVideoAnime } from "../helpers/getVideoAnime";

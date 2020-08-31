@@ -59,8 +59,9 @@ function Animes(props) {
   };
 
   return (
-    <div>
+    <div className="card-div">
       <Card
+        className="card-list"
         hoverable
         cover={
           <img
@@ -71,14 +72,11 @@ function Animes(props) {
         }
       >
         {synopsis ? (
-          <Meta
-            title={title}
-            description={synopsis.substring(0, 20)}
-            extra={<a href={url}>Más...</a>}
-          />
+          <Meta title={title} description={synopsis.substring(0, 50)} />
         ) : (
-          <Meta title={title} extra={<a href={url}>Más...</a>} />
+          <Meta title={title} />
         )}
+        <a href={url}>Más...</a>
       </Card>
     </div>
   );

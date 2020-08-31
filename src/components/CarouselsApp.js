@@ -8,7 +8,7 @@ export const CarouselsApp = ({ topAnime }) => {
   return (
     <Carousel className="carousels-app">
       {topAnime.map((topAnime_selec) => (
-        <Carousel.Item>
+        <Carousel.Item key={topAnime_selec.title}>
           <img src={topAnime_selec.image_url} alt={topAnime_selec.title} />
 
           <Carousel.Caption>

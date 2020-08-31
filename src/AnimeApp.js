@@ -7,15 +7,17 @@ import { ListAnime } from "./components/ListAnime";
 import { Row, Container } from "react-bootstrap";
 import { useFetchTopAnime } from "./hooks/useFetchTopAnime";
 
+import "./AnimeApp.css";
 export const AnimeApp = () => {
-  const [gener, setGener] = useState(["Action", "Adventure", "Cars", "Comedy"]);
+  //const [gener, setGener] = useState(["Action", "Adventure", "Cars", "Comedy"]);
+  const gener = ["Action", "Adventure", "Cars", "Comedy"];
   const [generoSelec, setGeneroSelec] = useState({
     current: 1,
   });
 
   const { data: topAnime, loading } = useFetchTopAnime();
   return (
-    <Container fluid>
+    <Container fluid className="container-app">
       <Row>
         <MenuApp
           gener={gener}

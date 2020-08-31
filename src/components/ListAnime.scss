@@ -1,7 +1,17 @@
 .card-list {
   width: 250px !important;
+  height: 480px !important;
 
   img {
     width: 230px;
+    height: 100%;
+    padding-left: 10px;
   }
+}
+
+.card-div {
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+  padding: 5px;
 }
