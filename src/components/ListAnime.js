@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from "react";
-import { Card, List } from "antd";
-import { Col, Spinner } from "react-bootstrap";
+import React, { useState } from "react";
+import { Card } from "antd";
+import { Spinner } from "react-bootstrap";
 import "./ListAnime.scss";
 import { useFetchGener } from "../hooks/useFetchGener";
 import ModalVideo from "./ModalVideo";
