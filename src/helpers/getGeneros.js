@@ -8,8 +8,9 @@ export const getGenero = async (generoSelec) => {
       title: img.title,
       url: img.url,
       synopsis: img.synopsis,
+      mal_id: img.mal_id,
     };
   });
-
+  console.log("ss", data);
   return animes;
 };
