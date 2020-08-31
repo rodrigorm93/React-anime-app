@@ -11,11 +11,12 @@ export const ListAnime = ({ generoSelec }) => {
 
   const [isVisibleModal, setVisibleModal] = useState(false);
   const [keyVideo, setKeyVideo] = useState("1");
-
+  const [urlVideo, setUrlVideo] = useState("");
   //Funcion para abrir el modal y cerrar
-
+  console.log("url_video:", urlVideo);
   const closeModal = () => {
     setVisibleModal(false);
+    setUrlVideo("");
   };
 
   return (
@@ -38,6 +39,8 @@ export const ListAnime = ({ generoSelec }) => {
         keyVideo={keyVideo}
         isOpen={isVisibleModal}
         close={closeModal}
+        setUrlVideo={setUrlVideo}
+        urlVideo={urlVideo}
       />
     </>
   );

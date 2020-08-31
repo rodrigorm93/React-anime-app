@@ -9,7 +9,7 @@ export const CarouselsApp = ({ topAnime }) => {
     <Carousel className="carousels-app">
       {topAnime.map((topAnime_selec) => (
         <Carousel.Item>
-          <img src={topAnime_selec.image_url} />
+          <img src={topAnime_selec.image_url} alt={topAnime_selec.title} />
 
           <Carousel.Caption>
             <h3>{topAnime_selec.title}</h3>
