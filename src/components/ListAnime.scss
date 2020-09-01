@@ -5,13 +5,20 @@
   img {
     width: 230px;
     height: 100%;
-    padding-left: 10px;
+    padding-left: 5px;
   }
 }
 
 .card-div {
   margin-left: auto;
   margin-right: auto;
-  display: block;
+  display: flex;
+  padding: 5px;
+}
+
+.btn-list-anime {
+  margin-left: auto;
+  margin-right: auto;
+  display: flex;
   padding: 5px;
 }

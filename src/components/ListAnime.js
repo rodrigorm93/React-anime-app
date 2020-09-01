@@ -1,46 +1,58 @@
 import React, { useState } from "react";
 import { Card } from "antd";
-import { Spinner } from "react-bootstrap";
+import { Spinner, Button } from "react-bootstrap";
 import "./ListAnime.scss";
-import { useFetchGener } from "../hooks/useFetchGener";
 import ModalVideo from "./ModalVideo";
+import { useFetch } from "../hooks/useFetch";
+import { useCounter } from "../hooks/useCounter";
 const { Meta } = Card;
 
 export const ListAnime = ({ generoSelec }) => {
-  const { data: imagesAnime, loading } = useFetchGener(generoSelec);
+  const { counter, increment } = useCounter(1);
+
+  //lista de animes
+  const url = `https://api.jikan.moe/v3/genre/anime/${generoSelec.current}/${counter}`;
+  const { data, loading } = useFetch(url);
+  const { anime } = !!data && data; //si viene la data toammos la primea posicion, !! transformamo el null en false
 
   const [isVisibleModal, setVisibleModal] = useState(false);
   const [keyVideo, setKeyVideo] = useState("1");
-  const [urlVideo, setUrlVideo] = useState("");
+
   //Funcion para abrir el modal y cerrar
-  console.log("url_video:", urlVideo);
   const closeModal = () => {
     setVisibleModal(false);
-    setUrlVideo("");
   };
 
   return (
     <>
-      {loading && (
+      {loading ? (
         <Spinner animation="border" role="status">
           <span className="sr-only">Loading...</span>
         </Spinner>
+      ) : (
+        <>
+          {anime.map((animes_selec) => (
+            <Animes
+              key={animes_selec.title}
+              animes_selec={animes_selec}
+              setKeyVideo={setKeyVideo}
+              setVisibleModal={setVisibleModal}
+              increment={increment}
+            />
+          ))}
+        </>
       )}
-      {imagesAnime.map((animes_selec) => (
-        //<Col className="card-list"></Col>
-        <Animes
-          key={animes_selec.title}
-          animes_selec={animes_selec}
-          setKeyVideo={setKeyVideo}
-          setVisibleModal={setVisibleModal}
-        />
-      ))}
+
+      <div className="btn-list-anime">
+        <Button onClick={increment} variant="outline-secondary">
+          Siguiente
+        </Button>
+      </div>
+
       <ModalVideo
         keyVideo={keyVideo}
         isOpen={isVisibleModal}
         close={closeModal}
-        setUrlVideo={setUrlVideo}
-        urlVideo={urlVideo}
       />
     </>
   );

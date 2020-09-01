@@ -8,12 +8,10 @@ const { SubMenu } = Menu;
 
 export const MenuApp = ({ gener, setGeneroSelec, generoSelec }) => {
   const handleClick = (e) => {
-    console.log("click ", e);
     setGeneroSelec({ current: e.key });
   };
 
   const { current } = generoSelec;
-  console.log(generoSelec);
 
   return (
     <div className="menu-app">

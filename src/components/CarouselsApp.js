@@ -7,7 +7,7 @@ import "./CarouselsApp.scss";
 export const CarouselsApp = ({ topAnime }) => {
   return (
     <Carousel className="carousels-app">
-      {topAnime.map((topAnime_selec) => (
+      {topAnime.slice(0, 20).map((topAnime_selec) => (
         <Carousel.Item key={topAnime_selec.title}>
           <img src={topAnime_selec.image_url} alt={topAnime_selec.title} />
 

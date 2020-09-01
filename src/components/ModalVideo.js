@@ -1,49 +1,35 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { Modal } from "antd";
 import ReactPlayer from "react-player";
-//import { useFetchVideo } from "../hooks/useFetchVideo";
+import { Spinner } from "react-bootstrap";
 
 import "./ModalVideo.scss";
-import { getVideoAnime } from "../helpers/getVideoAnime";
+import { useFetch } from "../hooks/useFetch";
 
 export default function ModalVideo(props) {
-  //isOpen =es el estado del modal si esta abierto o cerrado
-  const { isOpen, close, keyVideo, setUrlVideo, urlVideo } = props;
-  //const [urlVideo, setUrlVideo] = useState("");
+  const { isOpen, close, keyVideo } = props;
 
-  //const { data, loading } = useFetchVideo(keyVideo, setUrlVideo);
-  //useFetchVideo(keyVideo, setUrlVideo);
-  //let urlVideo2 = null;
-
-  useEffect(() => {
-    getVideoAnime(keyVideo).then((video) => {
-      if (video.length > 0) {
-        setUrlVideo(video[0].video_url);
-      } else {
-        setUrlVideo(video.video_url);
-      }
-    });
-  }, [keyVideo]);
-
-  //if (data.length > 0) {
-  //urlVideo2 = data[0].video_url;
-  // setUrlVideo(data[0].video_url);
-  //} else {
-  //urlVideo2 = data.video_url;
-  //setUrlVideo(data.video_url);
-  // }
+  const url = `https://api.jikan.moe/v3/anime/${keyVideo}/videos`;
+  const { data, loading } = useFetch(url);
+  const { promo } = !!data && data; //si viene la data toammos la primea posicion, !! transformamo el null en false
 
   return (
     <div>
-      <Modal
-        className="modal-video"
-        visible={isOpen}
-        centered
-        onCancel={close}
-        footer={false}
-      >
-        <ReactPlayer url={urlVideo} playing={isOpen} />
-      </Modal>
+      {loading ? (
+        <Spinner animation="border" role="status">
+          <span className="sr-only">Loading...</span>
+        </Spinner>
+      ) : (
+        <Modal
+          className="modal-video"
+          visible={isOpen}
+          centered
+          onCancel={close}
+          footer={false}
+        >
+          <ReactPlayer url={promo[0].video_url} playing={isOpen} />
+        </Modal>
+      )}
     </div>
   );
 }

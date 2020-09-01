@@ -4,10 +4,10 @@ import { MenuApp } from "./components/MenuApp";
 import "./AnimeApp.css";
 import { CarouselsApp } from "./components/CarouselsApp";
 import { ListAnime } from "./components/ListAnime";
-import { Row, Container } from "react-bootstrap";
-import { useFetchTopAnime } from "./hooks/useFetchTopAnime";
+import { Row, Container, Spinner } from "react-bootstrap";
 
 import "./AnimeApp.css";
+import { useFetch } from "./hooks/useFetch";
 export const AnimeApp = () => {
   //const [gener, setGener] = useState(["Action", "Adventure", "Cars", "Comedy"]);
   const gener = ["Action", "Adventure", "Cars", "Comedy"];
@@ -15,7 +15,11 @@ export const AnimeApp = () => {
     current: 1,
   });
 
-  const { data: topAnime, loading } = useFetchTopAnime();
+  //cargar los top anime
+  const url = "https://api.jikan.moe/v3/top/anime/1/upcoming";
+  const { data, loading } = useFetch(url);
+  const topAnime = !!data && data.top; //si viene la data toammos la primea posicion, !! transformamo el null en false
+
   return (
     <Container fluid className="container-app">
       <Row>
@@ -26,7 +30,13 @@ export const AnimeApp = () => {
         />
       </Row>
       <Row>
-        <CarouselsApp topAnime={topAnime} />
+        {loading ? (
+          <Spinner animation="border" role="status">
+            <span className="sr-only">Loading...</span>
+          </Spinner>
+        ) : (
+          <CarouselsApp topAnime={topAnime} />
+        )}
       </Row>
 
       <Row>
