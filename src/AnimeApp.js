@@ -8,8 +8,9 @@ import { Row, Container, Spinner } from "react-bootstrap";
 
 import "./AnimeApp.css";
 import { useFetch } from "./hooks/useFetch";
+import { useCounter } from "./hooks/useCounter";
 export const AnimeApp = () => {
-  //const [gener, setGener] = useState(["Action", "Adventure", "Cars", "Comedy"]);
+  const { counter, increment, reset } = useCounter(1);
   const gener = ["Action", "Adventure", "Cars", "Comedy"];
   const [generoSelec, setGeneroSelec] = useState({
     current: 1,
@@ -27,6 +28,7 @@ export const AnimeApp = () => {
           gener={gener}
           setGeneroSelec={setGeneroSelec}
           generoSelec={generoSelec}
+          reset={reset}
         />
       </Row>
       <Row>
@@ -40,7 +42,11 @@ export const AnimeApp = () => {
       </Row>
 
       <Row>
-        <ListAnime generoSelec={generoSelec} />
+        <ListAnime
+          generoSelec={generoSelec}
+          counter={counter}
+          increment={increment}
+        />
       </Row>
     </Container>
   );

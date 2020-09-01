@@ -6,9 +6,10 @@ import "./MenuApp.css";
 
 const { SubMenu } = Menu;
 
-export const MenuApp = ({ gener, setGeneroSelec, generoSelec }) => {
+export const MenuApp = ({ gener, setGeneroSelec, generoSelec, reset }) => {
   const handleClick = (e) => {
     setGeneroSelec({ current: e.key });
+    reset();
   };
 
   const { current } = generoSelec;

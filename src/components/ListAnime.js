@@ -7,9 +7,7 @@ import { useFetch } from "../hooks/useFetch";
 import { useCounter } from "../hooks/useCounter";
 const { Meta } = Card;
 
-export const ListAnime = ({ generoSelec }) => {
-  const { counter, increment } = useCounter(1);
-
+export const ListAnime = ({ generoSelec, counter, increment }) => {
   //lista de animes
   const url = `https://api.jikan.moe/v3/genre/anime/${generoSelec.current}/${counter}`;
   const { data, loading } = useFetch(url);
@@ -45,7 +43,7 @@ export const ListAnime = ({ generoSelec }) => {
 
       <div className="btn-list-anime">
         <Button onClick={increment} variant="outline-secondary">
-          Siguiente
+          Siguiente - página {counter}
         </Button>
       </div>
 
