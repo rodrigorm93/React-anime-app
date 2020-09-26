@@ -1,3 +1,13 @@
+## Conexión con Api 
+
+
+![Alt text](anime-app.png?raw=true "img")
+
+
+Publicado en : https://rodrigorm93.github.io/React-anime-app/
+
+
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
